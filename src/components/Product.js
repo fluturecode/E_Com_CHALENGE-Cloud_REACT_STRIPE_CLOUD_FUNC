@@ -1,6 +1,6 @@
 import React from "react";
 import "./Product.css";
-import { useStateValue } from "../StateProvider";
+import { useStateValue } from "../context/stateProvider.js";
 
 // Destructure product and pass product props
 function Product({ id, title, image, price, rating }) {
