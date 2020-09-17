@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Payment.css";
 import { useStateValue } from "../context/stateProvider";
 import CheckoutProduct from "./CheckoutProduct";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import CurrencyFormat from "react-currency-format";
 import { getBasketTotal } from "../context/reducer";
@@ -11,6 +11,7 @@ import axios from "../axios";
 function Payment() {
 	// Pull in Basket and User from data layer
 	const [{ basket, user }, dispatch] = useStateValue();
+	const history = useHistroy();
 
 	const stripe = useStripe();
 	const elements = useElements();
