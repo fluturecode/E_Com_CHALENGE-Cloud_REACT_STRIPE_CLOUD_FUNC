@@ -43,7 +43,7 @@ function Payment() {
 			.confirmCardPayment(clientSecret, {
 				payment_method: { card: elements.getElement(CardElement) },
 			})
-			.thenn(({ paymentItent }) => {
+			.then(({ paymentItent }) => {
 				// payment intent is the payment confirmation
 				setSucceeded(true);
 				setError(null);
