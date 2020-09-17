@@ -11,7 +11,7 @@ import axios from "../axios";
 function Payment() {
 	// Pull in Basket and User from data layer
 	const [{ basket, user }, dispatch] = useStateValue();
-	const history = useHistroy();
+	const history = useHistory();
 
 	const stripe = useStripe();
 	const elements = useElements();
