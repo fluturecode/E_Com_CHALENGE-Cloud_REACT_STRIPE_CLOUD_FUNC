@@ -47,6 +47,11 @@ function Payment() {
 				setSucceeded(true);
 				setError(null);
 				setProcessing(false);
+
+				dispatch({
+					type: "EMPTY_BASKET",
+				});
+
 				// push user to order page after order is processed
 				history.replace("/orders");
 			});

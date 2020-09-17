@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Checkout from "./components/Checkout.js";
 import Login from "./components/Login";
 import Payment from "./components/Payment.js";
+import Orders from "./components/Orders";
 import { auth } from "./firebase";
 import { useStateValue } from "./context/stateProvider";
 import { loadStripe } from "@stripe/stripe-js";
@@ -16,7 +17,7 @@ const promise = loadStripe(
 );
 
 function App() {
-	const [dispatch] = useStateValue();
+	const [{}, dispatch] = useStateValue();
 
 	useEffect(() => {
 		auth.onAuthStateChanged((authUser) => {
@@ -42,6 +43,9 @@ function App() {
 				<Switch>
 					<Route path="/login">
 						<Login />
+					</Route>
+					<Route path="/orders">
+						<Orders />
 					</Route>
 					<Route path="/checkout">
 						<Header />
