@@ -7,6 +7,7 @@ import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import CurrencyFormat from "react-currency-format";
 import { getBasketTotal } from "../context/reducer";
 import axios from "../axios";
+import { db } from "../firebase";
 
 function Payment() {
 	// Pull in Basket and User from data layer
@@ -42,8 +43,18 @@ function Payment() {
 			.confirmCardPayment(clientSecret, {
 				payment_method: { card: elements.getElement(CardElement) },
 			})
+			// payment intent = payment confirmation
 			.then(({ paymentIntent }) => {
-				// payment intent is the payment confirmation
+				db.collection("users")
+					.doc(user?.uid)
+					.collection("orders")
+					.doc(paymentIntent.id)
+					.set({
+						basket: basket,
+						amount: paymentIntent.amount,
+						created: paymentIntent.created,
+					});
+
 				setSucceeded(true);
 				setError(null);
 				setProcessing(false);
