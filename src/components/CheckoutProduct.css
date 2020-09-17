@@ -20,6 +20,7 @@
 	object-fit: contain;
 	width: 180px;
 	height: 180px;
+	border-radius: 5px;
 }
 
 .checkoutProduct__rating {
