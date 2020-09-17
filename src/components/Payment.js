@@ -31,7 +31,6 @@ function Payment() {
 			});
 			setClientSecret(response.data.clientSecret);
 		};
-
 		getClientSecret();
 	}, [basket]);
 
@@ -43,7 +42,7 @@ function Payment() {
 			.confirmCardPayment(clientSecret, {
 				payment_method: { card: elements.getElement(CardElement) },
 			})
-			.then(({ paymentItent }) => {
+			.then(({ paymentIntent }) => {
 				// payment intent is the payment confirmation
 				setSucceeded(true);
 				setError(null);
