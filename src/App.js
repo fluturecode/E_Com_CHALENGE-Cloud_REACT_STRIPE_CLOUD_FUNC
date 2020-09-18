@@ -12,6 +12,7 @@ import { useStateValue } from "./context/stateProvider";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 
+// Use your Strip 'Publishable Key' here
 const promise = loadStripe(
 	"pk_test_51HPvUtB1fbBTGpJWq8NNpKmAmGgUD53rRHhHAdJFNEdg59lIZW4JUNRQX3kpi3ysZjnH4QVl94SR0TXcmA5o88Cc00nJulJm5v"
 );

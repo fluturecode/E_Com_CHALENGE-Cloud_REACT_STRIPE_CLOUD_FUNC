@@ -24,12 +24,16 @@ function Payment() {
 	const [clientSecret, setClientSecret] = useState(true);
 
 	useEffect(() => {
+		// Generate Stripe secret, and get a new one, every time
+		// the basket changes
 		const getClientSecret = async () => {
 			const response = await axios({
 				method: "post",
-				// Stripe expects the total in a currencies subunits
+				// Pass in query parameter "total"
+				// Stripe expects the total in currency subunits
 				url: `/payments/create?total=${getBasketTotal(basket) * 100}`,
 			});
+			// updated client secret, to allow Stripe to charge amount
 			setClientSecret(response.data.clientSecret);
 		};
 		getClientSecret();
@@ -39,11 +43,12 @@ function Payment() {
 		event.preventDefault();
 		setProcessing(true);
 
+		// Grab Client secret in order to process request
 		const payload = await stripe
 			.confirmCardPayment(clientSecret, {
 				payment_method: { card: elements.getElement(CardElement) },
 			})
-			// payment intent = payment confirmation
+			// payment intent --> "payment confirmation"
 			.then(({ paymentIntent }) => {
 				db.collection("users")
 					.doc(user?.uid)
@@ -63,7 +68,7 @@ function Payment() {
 					type: "EMPTY_BASKET",
 				});
 
-				// push user to order page after order is processed
+				// push user to orders page after order is processed
 				history.replace("/orders");
 			});
 	};
