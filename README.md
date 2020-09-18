@@ -1,4 +1,5 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Full-Stack E-Commerce Site with Stripe Payments
+![Screen Shot 2020-09-18 at 5 21 24 PM](https://user-images.githubusercontent.com/59614789/93646069-73891200-f9d3-11ea-8cc8-d4522669da27.png)
 
 ## Available Scripts
 
